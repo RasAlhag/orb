@@ -1,0 +1,29 @@
+{
+    "name": "orb",
+    "version": "0.0.1",
+    "description": "lootfilter application for game Path of Exile",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/RasAlhag/orb.git"
+    },
+    "keywords": [
+        "lootfilter",
+        "js",
+        "gui",
+        "path-of-exile"
+    ],
+    "author": "RasAlhag",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/RasAlhag/orb/issues"
+    },
+    "homepage": "https://github.com/RasAlhag/orb#readme",
+    "devDependencies": {
+        "electron": "^6.0.11"
+    }
+}   
