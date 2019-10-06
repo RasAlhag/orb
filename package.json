@@ -1,11 +1,9 @@
 {
-    "name": "orb",
-    "version": "0.0.1",
-    "description": "lootfilter application for game Path of Exile",
-    "main": "main.js",
-    "scripts": {
-        "start": "electron .",
-        "test": "test"
+    "author": "RasAlhag",
+    "license": "MIT",
+    "homepage": "https://github.com/RasAlhag/orb#readme",
+    "bugs": {
+        "url": "https://github.com/RasAlhag/orb/issues"
     },
     "repository": {
         "type": "git",
@@ -15,15 +13,60 @@
         "lootfilter",
         "js",
         "gui",
-        "path-of-exile"
+        "path-of-exile",
+        "extends"
     ],
-    "author": "RasAlhag",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/RasAlhag/orb/issues"
+    "name": "orb",
+    "version": "0.0.1",
+    "description": "lootfilter application for game Path of Exile",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "electron:build": "vue-cli-service electron:build",
+        "electron:serve": "vue-cli-service electron:serve",
+        "postinstall": "electron-builder install-app-deps",
+        "postuninstall": "electron-builder install-app-deps"
     },
-    "homepage": "https://github.com/RasAlhag/orb#readme",
+    "main": "background.js",
+    "dependencies": {
+        "core-js": "^2.6.5",
+        "vue": "^2.6.10"
+    },
     "devDependencies": {
-        "electron": "^6.0.11"
-    }
-}   
+        "@vue/cli-plugin-babel": "^3.11.0",
+        "@vue/cli-plugin-eslint": "^3.11.0",
+        "@vue/cli-service": "^3.11.0",
+        "babel-eslint": "^10.0.1",
+        "electron": "6.0.0",
+        "eslint": "^5.16.0",
+        "eslint-loader": "^3.0.2",
+        "eslint-plugin-vue": "^5.0.0",
+        "vue-cli-plugin-electron-builder": "^1.4.0",
+        "vue-router": "^3.1.3",
+        "vue-template-compiler": "^2.6.10",
+        "vuetify": "^2.1.1"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+
+
+        "rules": {},
+        "parserOptions": {
+            "parser": "babel-eslint"
+        }
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
+}
