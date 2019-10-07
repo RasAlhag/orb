@@ -1,11 +1,10 @@
 <template lang="pug">
-  div Hello home
+  div Rarity is here
 </template>
-
 <script>
-    export default {
-        name: "CHome"
-    }
+  export default {
+    name: "ORarityCondition"
+  }
 </script>
 
 <style scoped>
