@@ -10,6 +10,7 @@ import Sockets from "./Sockets"
 import StackSize from "./StackSize"
 import Width from "./Width"
 import Rarity from "./Rarity"
+import RarityCondition from "../../app/Rules/RuleEditor/Conditions/RarityCondition"
 
 export default [
   {
@@ -65,6 +66,6 @@ export default [
   {
     key: 'Rarity',
     model: Rarity,
-    component: HasOperatorCondition,
+    component: RarityCondition,
   },
 ]

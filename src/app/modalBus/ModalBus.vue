@@ -1,12 +1,15 @@
 <template lang="pug">
   div
     v-dialog(
-      v-for="modal in $modal.windows",
-      :value="true",
-      v-bind="modal.options"
-      @input="updateValue(modal, $event)"
+      v-for="modal in $modal.windows", :key="modal.id",
+      :value="true", v-bind="modal.options"
+      @input="updateValue(modal, $event)",
     )
-      component(:is="modal.component", v-bind="modal.props", @close="close(modal)", v-on="modal.on")
+      component(
+        :is="modal.component",
+        v-bind="modal.props",
+        @close="close(modal)",
+      )
 </template>
 <script>
   export default {

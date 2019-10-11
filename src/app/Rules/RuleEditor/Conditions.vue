@@ -5,25 +5,22 @@
         v-layout(style="height: 62px")
           v-flex(xs5)
             v-select(
-              solo,
-              label="Тип условия"
               :items="conditionsToSelect",
               :value="resolveCnd(condition)",
-              readonly,
-              hide-details
+              readonly, hide-details, solo,
             ).mx-2
           v-flex(xs7)
             component(:is="resolveComponent(condition)", :type="resolveModel(condition)", :value="condition", @remove="removeCondition")
     v-layout
       v-flex(xs5)
         v-select(
-          solo,
-          label="Тип условия"
-          :items="conditionsToSelect",
-          v-model="cnd"
+          label="Новое условие",
+         :items="conditionsToSelect",
+          hide-details, solo,
+          @input="createCondition",
+          v-model="cnd",
+          background-color="success",
         ).mx-2
-      v-flex(v-if="cnd", xs7)
-        component(:is="cnd.component", :type="cnd.model", @input="addCondition")
 </template>
 <script>
   import Rule from '../../../Domain/Rule'
@@ -53,13 +50,19 @@
       }
     },
     methods: {
+      createCondition (e) {
+        console.log(e.component.name)
+        this.addCondition(e.model.create())
+      },
       addCondition(condition) {
         this.rule.conditions.push(condition)
-        this.cnd = null
+        this.$nextTick(() => {
+          this.cnd = null
+        })
       },
       resolveComponent(condition) {
         return this.conditions.reduce((carry, current) => {
-          return carry || condition instanceof current.model ? current.component : null
+          return carry || (condition instanceof current.model ? current.component : null)
         }, null)
       },
       resolveModel(condition) {
@@ -77,7 +80,6 @@
     }
   }
 </script>
-
 <style scoped>
 
 </style>

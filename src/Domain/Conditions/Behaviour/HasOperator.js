@@ -11,6 +11,10 @@ export default class HasOperator extends AbstractCondition {
     return `  ${this.typeName} ${this.operator} ${this.value}`
   }
 
+  static create() {
+    return new this({operator: this.getOperators()[2], value: 1})
+  }
+
   static getOperators() {
     return [
       '<',

@@ -2,19 +2,16 @@
   v-card
     v-toolbar(dense)
       v-text-field(
-        solo,
+        solo, flat,
         hide-details,
-        flat,
         v-model="rule.name",
         prepend-icon="mdi-pencil"
-      )
-      v-spacer
-      v-flex(shrink)
-        v-tabs(v-model="activeTab")
-          v-tab(v-for="tab in tabs", v-text="tab.title")
+      ).full-width
+      v-tabs(v-model="activeTab", right)
+        v-tab(v-for="tab in tabs", :key="tab.title") {{tab.title}}
     v-card-text.py-4
       v-tabs-items(:value="activeTab")
-        v-tab-item(v-for="tab in tabs")
+        v-tab-item(v-for="tab in tabs", :key="tab.title")
           component(:is="tab.component", :rule="rule")
     v-card-actions
       v-spacer
