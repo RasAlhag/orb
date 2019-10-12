@@ -19,7 +19,6 @@
 </template>
 <script>
   import HasOperator from '../../../../Domain/Conditions/Behaviour/HasOperator'
-
   export default {
     name: 'OHasOperatorCondition',
     props: {

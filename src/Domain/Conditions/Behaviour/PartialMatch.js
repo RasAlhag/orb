@@ -8,4 +8,8 @@ export default class PartialMatch extends AbstractCondition{
   matches() {
     return this.constructor.getVariants().filter(variant => variant.includes(this.value))
   }
+
+  toString() {
+    return `  ${this.typeName} "${this.value}"`
+  }
 }

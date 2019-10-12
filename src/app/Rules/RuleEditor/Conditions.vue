@@ -1,15 +1,19 @@
 <template lang="pug">
   div
-    v-layout(v-for="condition in rule.conditions").px-0.mx-0
-      v-flex
-        v-layout(style="height: 62px")
-          v-flex(xs5)
-            v-text-field(
-              :value="resolveCnd(condition).key",
-              readonly, hide-details, solo,
-            ).mx-2
-          v-flex(xs7)
-            component(:is="resolveComponent(condition)", :type="resolveModel(condition)", :value="condition", @remove="removeCondition")
+    draggable(v-model="rule.conditions",  handle=".handle")
+      transition-group(name="flip-list")
+        v-layout(v-for="condition in rule.conditions", :key="condition.id").px-0.mx-0
+          v-flex
+            v-layout(style="height: 62px")
+              v-flex(xs5)
+                v-text-field.pointer(
+                  :value="resolveCnd(condition).key",
+                  readonly, hide-details, solo
+                ).mx-2
+                  template(v-slot:prepend)
+                    v-icon(color="grey lighten-1").handle mdi-drag
+              v-flex(xs7)
+                component(:is="resolveComponent(condition)", :type="resolveModel(condition)", :value="condition", @remove="removeCondition")
     v-layout
       v-flex(xs5)
         v-select(
@@ -26,9 +30,11 @@
 <script>
   import Rule from '../../../Domain/Rule'
   import conditions from '../../../Domain/Conditions'
+  import draggable from 'vuedraggable'
 
   export default {
     name: 'OConditions',
+    components: {draggable},
     props: {
       rule: {
         type: Rule,

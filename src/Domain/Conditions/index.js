@@ -15,6 +15,8 @@ import Class from "./Class"
 import PartialMatchCondition from "../../app/Rules/RuleEditor/Conditions/PartialMatchCondition"
 import BaseType from "./BaseType"
 import HasExplicitMod from "./HasExplicitMod"
+import Corrupted from "./Corrupted"
+import BooleanCondition from "../../app/Rules/RuleEditor/Conditions/BooleanCondition"
 
 export default [
   {
@@ -86,5 +88,11 @@ export default [
     key: 'HasExplicitMod',
     model: HasExplicitMod,
     component: PartialMatchCondition,
+  },
+
+  {
+    key: 'Corrupted',
+    model: Corrupted,
+    component: BooleanCondition,
   },
 ]
