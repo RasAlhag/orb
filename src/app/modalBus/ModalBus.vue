@@ -8,6 +8,7 @@
       component(
         :is="modal.component",
         v-bind="modal.props",
+        v-on="modal.on",
         @close="close(modal)",
       )
 </template>

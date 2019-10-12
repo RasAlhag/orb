@@ -11,6 +11,9 @@ import StackSize from "./StackSize"
 import Width from "./Width"
 import Rarity from "./Rarity"
 import RarityCondition from "../../app/Rules/RuleEditor/Conditions/RarityCondition"
+import Class from "./Class"
+import PartialMatchCondition from "../../app/Rules/RuleEditor/Conditions/PartialMatchCondition"
+import BaseType from "./BaseType"
 
 export default [
   {
@@ -67,5 +70,15 @@ export default [
     key: 'Rarity',
     model: Rarity,
     component: RarityCondition,
+  },
+  {
+    key: 'Class',
+    model: Class,
+    component: PartialMatchCondition,
+  },
+  {
+    key: 'BaseType',
+    model: BaseType,
+    component: PartialMatchCondition,
   },
 ]

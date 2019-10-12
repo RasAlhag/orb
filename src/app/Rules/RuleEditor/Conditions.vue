@@ -4,9 +4,8 @@
       v-flex
         v-layout(style="height: 62px")
           v-flex(xs5)
-            v-select(
-              :items="conditionsToSelect",
-              :value="resolveCnd(condition)",
+            v-text-field(
+              :value="resolveCnd(condition).key",
               readonly, hide-details, solo,
             ).mx-2
           v-flex(xs7)
@@ -14,6 +13,8 @@
     v-layout
       v-flex(xs5)
         v-select(
+          ref="conditionSelector",
+          prepend-inner-icon="mdi-plus"
           label="Новое условие",
          :items="conditionsToSelect",
           hide-details, solo,
@@ -51,8 +52,8 @@
     },
     methods: {
       createCondition (e) {
-        console.log(e.component.name)
         this.addCondition(e.model.create())
+        this.$refs.conditionSelector.blur()
       },
       addCondition(condition) {
         this.rule.conditions.push(condition)

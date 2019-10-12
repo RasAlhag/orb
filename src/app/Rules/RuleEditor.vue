@@ -15,7 +15,7 @@
           component(:is="tab.component", :rule="rule")
     v-card-actions
       v-spacer
-      v-btn(color="success lighten-1", text, @click="$emit('input', rule) && $emit('close')") Сохранить
+      v-btn(color="success lighten-1", text, @click="saveRule") Сохранить
       v-btn(color="grey", text, @click="$emit('close')") Отмена
 </template>
 <script>
@@ -54,6 +54,12 @@
         },
       ]
     }),
+    methods: {
+      saveRule () {
+        this.$emit('input', this.rule)
+        this.$emit('close')
+      }
+    }
   }
 </script>
 

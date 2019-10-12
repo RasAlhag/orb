@@ -21,7 +21,7 @@
       exit() {
         window.close()
       }
-    }
+    },
   }
 </script>
 

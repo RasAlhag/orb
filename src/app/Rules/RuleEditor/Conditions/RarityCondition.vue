@@ -23,7 +23,7 @@
   import Rarity from "../../../../Domain/Conditions/Rarity"
 
   export default {
-    name: "ORarityCondition",
+    name: 'ORarityCondition',
     props: {
       value: {
         type: Rarity,
