@@ -8,7 +8,6 @@ import '@mdi/font/css/materialdesignicons.css'
 import routes from './routes'
 import modalBus from "./app/modalBus"
 
-
 Vue.config.productionTip = false
 Vue.use(Vuetify)
 Vue.use(VueRouter)

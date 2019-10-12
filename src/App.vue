@@ -12,7 +12,7 @@
     ModalBus
 </template>
 <script>
-  import ODrawer from './app/drawer/Drawer'
+  import ODrawer from './app/Drawer/Drawer'
   import ModalBus from './app/modalBus/ModalBus'
   import list from './Domain/Conditions/HasExplicitMod/list'
 
