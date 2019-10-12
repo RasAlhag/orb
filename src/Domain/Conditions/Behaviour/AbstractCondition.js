@@ -9,6 +9,6 @@ export default class AbstractCondition {
   }
 
   toString() {
-    return `  ${this.typeName} ${this.operator} ${this.value}`
+    return `  ${this.typeName} ${this.operator || ''} ${this.value}`
   }
 }

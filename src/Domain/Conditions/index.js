@@ -14,6 +14,7 @@ import RarityCondition from "../../app/Rules/RuleEditor/Conditions/RarityConditi
 import Class from "./Class"
 import PartialMatchCondition from "../../app/Rules/RuleEditor/Conditions/PartialMatchCondition"
 import BaseType from "./BaseType"
+import HasExplicitMod from "./HasExplicitMod"
 
 export default [
   {
@@ -79,6 +80,11 @@ export default [
   {
     key: 'BaseType',
     model: BaseType,
+    component: PartialMatchCondition,
+  },
+  {
+    key: 'HasExplicitMod',
+    model: HasExplicitMod,
     component: PartialMatchCondition,
   },
 ]

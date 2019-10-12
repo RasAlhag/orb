@@ -14,6 +14,8 @@
 <script>
   import ODrawer from './app/drawer/Drawer'
   import ModalBus from './app/modalBus/ModalBus'
+  import list from './Domain/Conditions/HasExplicitMod/list'
+
   export default {
     name: 'App',
     components: {ODrawer, ModalBus},
