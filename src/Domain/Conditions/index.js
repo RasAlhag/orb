@@ -19,6 +19,7 @@ import Corrupted from "./Corrupted"
 import BooleanCondition from "../../app/Rules/RuleEditor/Conditions/BooleanCondition"
 import AnyEnchantment from "./AnyEnchantment"
 import HasEnchantment from "./HasEnchantment"
+import Prophecy from "./Prophecy"
 
 export default [
   {
@@ -89,6 +90,11 @@ export default [
   {
     key: 'HasExplicitMod',
     model: HasExplicitMod,
+    component: PartialMatchCondition,
+  },
+  {
+    key: 'Prophecy',
+    model: Prophecy,
     component: PartialMatchCondition,
   },
   {
