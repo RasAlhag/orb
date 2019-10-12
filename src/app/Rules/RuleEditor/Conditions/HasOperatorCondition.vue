@@ -1,12 +1,13 @@
 <template lang="pug">
   v-layout(v-if="value")
-    v-flex(xs3)
+    v-flex(xs2)
       v-select(
         solo,
         label="Оператор",
         :items="operators",
-        v-model="value.operator"
-      ).mx-2
+        v-model="value.operator",
+        append-icon=""
+      )
     v-flex
       v-text-field(
         solo,

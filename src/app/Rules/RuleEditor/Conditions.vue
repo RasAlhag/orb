@@ -5,17 +5,18 @@
         v-layout(v-for="condition in rule.conditions", :key="condition.id").px-0.mx-0
           v-flex
             v-layout(style="height: 62px")
-              v-flex(xs5)
-                v-text-field.pointer(
-                  :value="resolveCnd(condition).key",
-                  readonly, hide-details, solo
-                ).mx-2
-                  template(v-slot:prepend)
-                    v-icon(color="grey lighten-1").handle mdi-drag
-              v-flex(xs7)
+              v-flex(xs4)
+                v-layout
+                  v-icon(color="grey ").handle.pointer mdi-drag
+                  v-text-field.pointer(
+                    :value="resolveCnd(condition).key",
+                    readonly, hide-details, solo, disabled
+                  ).mx-2
+              v-flex(xs8)
                 component(:is="resolveComponent(condition)", :type="resolveModel(condition)", :value="condition", @remove="removeCondition")
+    v-divider.my-4
     v-layout
-      v-flex(xs5)
+      v-flex(xs4)
         v-select(
           ref="conditionSelector",
           prepend-inner-icon="mdi-plus"
@@ -25,6 +26,7 @@
           @input="createCondition",
           v-model="cnd",
           background-color="success",
+          append-icon="",
         ).mx-2
 </template>
 <script>
