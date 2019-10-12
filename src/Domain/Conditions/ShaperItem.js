@@ -1,8 +1,8 @@
 import Boolean from "./Behaviour/Boolean"
 
-export default class ShapedMap extends Boolean {
+export default class ShaperItem extends Boolean {
   constructor({value}) {
     super({value})
-    this.typeName = 'ShapedMap'
+    this.typeName = 'ShaperItem'
   }
 }

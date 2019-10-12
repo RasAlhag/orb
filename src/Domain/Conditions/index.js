@@ -17,6 +17,8 @@ import BaseType from "./BaseType"
 import HasExplicitMod from "./HasExplicitMod"
 import Corrupted from "./Corrupted"
 import BooleanCondition from "../../app/Rules/RuleEditor/Conditions/BooleanCondition"
+import AnyEnchantment from "./AnyEnchantment"
+import HasEnchantment from "./HasEnchantment"
 
 export default [
   {
@@ -89,10 +91,20 @@ export default [
     model: HasExplicitMod,
     component: PartialMatchCondition,
   },
-
+  {
+    key: 'HasEnchantment',
+    model: HasEnchantment,
+    component: PartialMatchCondition,
+  },
   {
     key: 'Corrupted',
     model: Corrupted,
+    component: BooleanCondition,
+  },
+
+  {
+    key: 'AnyEnchantment',
+    model: AnyEnchantment,
     component: BooleanCondition,
   },
 ]

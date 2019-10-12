@@ -8,4 +8,8 @@ export default class Boolean extends AbstractCondition {
   static create () {
     return new this({value: true})
   }
+
+  toString() {
+    return `  ${this.typeName} ${this.value ? 'True' : 'False'}`
+  }
 }
