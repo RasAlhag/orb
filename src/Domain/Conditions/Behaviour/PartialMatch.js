@@ -21,6 +21,9 @@ export default class PartialMatch extends AbstractCondition {
   }
 
   toString() {
+    if (!this.value.length) {
+      return null
+    }
     let preparedValue = this.value.map(res => `"${res}"`).join(' ')
     return `  ${this.typeName} ${preparedValue}`
   }

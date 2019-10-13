@@ -8,7 +8,7 @@ export default class SocketGroup extends AbstractCondition {
 
   static getVariants() {
     return [
-      {text: 'None', value: null, color: 'grey darken-4'},
+      {text: 'None', value: null, color: 'grey darken-2'},
       {text: 'Red', value: 'R', color: 'error'},
       {text: 'Green', value: 'G', color: 'success'},
       {text: 'Blue', value: 'B', color: 'primary'},

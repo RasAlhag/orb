@@ -6,9 +6,10 @@ export default class Rule {
     this.conditions = conditions
     this.styles = styles
   }
+
   toString() {
     let result = `# ${this.name}${os.EOL} Show ${os.EOL}`
-    this.conditions.forEach(condition => {
+    this.conditions.map(c => c.toString()).filter(c => c).forEach(condition => {
       result += condition.toString() + os.EOL
     })
     this.styles.forEach(style => {

@@ -1,34 +1,33 @@
 <template lang="pug">
-  v-flex(shrink).px-2
-    v-card.px-2
+  v-flex(shrink)
+    v-card.pr-2.pl-3.mr-2
       v-layout
         v-chip(@click="$emit('drop')", v-if="deletable").my-2.mr-2.px-0
           v-icon(small, right).mx-2 mdi-close
         v-chip-group
           draggable(:value="value", handle=".handle" , @input="$emit('input', $event)")
-            transition-group(name="flip-list")
-              span(v-for="(element, index) in value", :key="index")
-                v-menu(:value="open[index]", @input="$set(open, index, $event)", origin="top")
-                  template(v-slot:activator="{on}")
-                    v-chip(
-                      active-class="",
-                      :color="resolveColor(element)",
-                      style="width: 32px;",
-                      v-on="on"
-                    ).px-0.handle
-                      div(v-if="element", style="width: 32px;").text-center {{element}}
-                      v-icon(v-else, small, right) mdi-plus
-                  div(
-                    v-for="variant in variants",
-                    :key="variant.value"
-                  ).grey.darken-3.px-1.py-1
-                    v-chip(
-                      :color="variant.color",
-                      @click="$set(value, index,  variant.value)",
-                      style="width: 32px;"
-                    ).px-0
-                      div(v-if="variant.value", style="width: 32px;").text-center {{variant.value}}
-                      v-icon(v-else, small, right) mdi-close
+            span(v-for="(element, index) in value", :key="index")
+              v-menu(:value="open[index]", @input="$set(open, index, $event)", origin="top")
+                template(v-slot:activator="{on}")
+                  v-chip(
+                    active-class="",
+                    :color="resolveColor(element)",
+                    style="width: 32px;",
+                    v-on="on"
+                  ).px-0.handle
+                    div(v-if="element", style="width: 32px;").text-center {{element}}
+                    v-icon(v-else, small, right) mdi-plus
+                div(
+                  v-for="variant in variants",
+                  :key="variant.value"
+                ).grey.darken-3.px-1.py-1
+                  v-chip(
+                    :color="variant.color",
+                    @click="$set(value, index,  variant.value)",
+                    style="width: 32px;"
+                  ).px-0
+                    div(v-if="variant.value", style="width: 32px;").text-center {{variant.value}}
+                    v-icon(v-else, small, right) mdi-close
 </template>
 
 <script>
