@@ -6,7 +6,8 @@
         label="Оператор",
         :items="operators",
         v-model="value.operator",
-        append-icon=""
+        append-icon="",
+        hide-details,
       )
     v-flex
       v-text-field(

@@ -1,19 +1,20 @@
 <template lang="pug">
   div
-    draggable(v-model="rule.conditions",  handle=".handle")
-      transition-group(name="flip-list")
-        v-layout(v-for="condition in rule.conditions", :key="condition.id").px-0.mx-0
-          v-flex
-            v-layout(style="height: 62px")
-              v-flex(xs4)
-                v-layout
-                  v-icon(color="grey ").handle.pointer mdi-drag
-                  v-text-field.pointer(
-                    :value="resolveCnd(condition).key",
-                    readonly, hide-details, solo, disabled
-                  ).mx-2
-              v-flex(xs8)
-                component(:is="resolveComponent(condition)", :type="resolveModel(condition)", :value="condition", @remove="removeCondition")
+    vue-custom-scrollbar(class="scroll-area")
+      draggable(v-model="rule.conditions",  handle=".handle")
+        transition-group(name="flip-list")
+          v-layout(v-for="condition in rule.conditions", :key="condition.id").px-0.mx-0.py-1
+            v-flex
+              v-layout
+                v-flex(xs3)
+                  v-layout
+                    v-icon(color="grey ").handle.pointer mdi-drag
+                    v-text-field.pointer(
+                      :value="resolveCnd(condition).key",
+                      readonly, hide-details, solo, disabled
+                    ).mx-2
+                v-flex(xs9)
+                  component(:is="resolveComponent(condition)", :type="resolveModel(condition)", :value="condition", @remove="removeCondition")
     v-divider.my-4
     v-layout
       v-flex(xs4)
@@ -33,10 +34,11 @@
   import Rule from '../../../Domain/Rule'
   import conditions from '../../../Domain/Conditions'
   import draggable from 'vuedraggable'
+  import VueCustomScrollbar from 'vue-custom-scrollbar'
 
   export default {
     name: 'OConditions',
-    components: {draggable},
+    components: {draggable, VueCustomScrollbar},
     props: {
       rule: {
         type: Rule,
@@ -90,5 +92,9 @@
   }
 </script>
 <style scoped>
-
+  .scroll-area {
+    max-height: calc(90vh - 300px);
+    margin-right: -24px;
+    padding-right: 16px;
+  }
 </style>

@@ -7,10 +7,6 @@ export default class HasExplicitMod extends PartialMatch {
     this.typeName = 'HasExplicitMod'
   }
 
-  static create () {
-    return new this({value: null})
-  }
-
   static getVariants() {
     return list
   }

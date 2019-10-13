@@ -4,6 +4,10 @@
       v-layout(align-center)
         v-combobox(
           solo,
+          multiple,
+          chips,
+          deletable-chips,
+          hide-details,
           label="Фильтр",
           :items="variants",
           v-model="value.value"

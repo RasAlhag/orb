@@ -8,7 +8,7 @@ export default class Class extends PartialMatch {
   }
 
   static create () {
-    return new this({value: null})
+    return new this({value: []})
   }
 
   static getVariants() {

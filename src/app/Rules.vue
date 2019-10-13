@@ -15,7 +15,7 @@
     methods: {
       newRule() {
         this.$modal.open({
-          options: {persistent: true, width: 800},
+          options: {persistent: true, width: 1200},
           props: {
             rule: new Rule({name: 'Новое Правило', conditions: [], styles: []})
           },

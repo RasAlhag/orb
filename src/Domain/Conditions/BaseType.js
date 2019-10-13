@@ -7,10 +7,6 @@ export default class BaseType extends PartialMatch {
     this.typeName = 'BaseType'
   }
 
-  static create () {
-    return new this({value: null})
-  }
-
   static getVariants() {
     return list
   }

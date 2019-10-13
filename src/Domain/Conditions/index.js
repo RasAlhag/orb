@@ -20,6 +20,8 @@ import BooleanCondition from "../../app/Rules/RuleEditor/Conditions/BooleanCondi
 import AnyEnchantment from "./AnyEnchantment"
 import HasEnchantment from "./HasEnchantment"
 import Prophecy from "./Prophecy"
+import SocketGroup from "./SocketGroup"
+import SocketGroupCondition from "../../app/Rules/RuleEditor/Conditions/SocketGroupCondition"
 
 export default [
   {
@@ -107,10 +109,14 @@ export default [
     model: Corrupted,
     component: BooleanCondition,
   },
-
   {
     key: 'AnyEnchantment',
     model: AnyEnchantment,
     component: BooleanCondition,
+  },
+  {
+    key: 'SocketGroup',
+    model: SocketGroup,
+    component: SocketGroupCondition,
   },
 ]

@@ -1,18 +1,20 @@
 <template lang="pug">
   v-layout(v-if="value")
-    v-flex(xs3)
+    v-flex(xs2)
       v-select(
         solo,
         label="Оператор",
         :items="operators",
-        v-model="value.operator"
-      ).mx-2
+        v-model="value.operator",
+        hide-details,
+      )
     v-flex
       v-select(
         solo,
         label="Редкость",
         :items="rarityVariants",
-        v-model="value.value"
+        v-model="value.value",
+        hide-details,
       ).mx-2
     v-flex(shrink)
       v-btn(large color="error", @click="$emit('remove', value)", icon).fill-height

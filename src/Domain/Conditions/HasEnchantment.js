@@ -7,10 +7,6 @@ export default class HasEnchantment extends PartialMatch {
     this.typeName = 'HasEnchantment'
   }
 
-  static create () {
-    return new this({value: null})
-  }
-
   static getVariants() {
     return list
   }
