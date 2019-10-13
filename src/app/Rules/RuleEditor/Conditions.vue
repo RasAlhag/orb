@@ -7,7 +7,7 @@
             v-flex
               v-layout
                 v-flex(xs3)
-                  v-layout
+                  v-layout.my-1
                     v-icon(color="grey ").handle.pointer mdi-drag
                     v-text-field.pointer(
                       :value="resolveCnd(condition).key",

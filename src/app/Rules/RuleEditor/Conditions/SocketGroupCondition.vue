@@ -1,8 +1,8 @@
 <template lang="pug">
   v-layout(v-if="value")
     v-flex(shrink)
-      v-layout
-        orb-socket-group(
+      v-layout(wrap)
+        orb-socket-group.my-1(
           v-for="(group, index) in value.value",
           :key="index",
           v-model="value.value[index]",
@@ -10,7 +10,7 @@
           @drop="$delete(value.value, index)",
           :deletable="value.value.length > 1"
         )
-    v-flex(shrink).py-1.px-1
+    v-flex(shrink).py-2.px-1
       v-btn(icon, @click="value.value.push([])")
         v-icon mdi-plus
     v-spacer

@@ -34,6 +34,7 @@
   "dependencies": {
     "@mdi/font": "^4.4.95",
     "core-js": "^2.6.5",
+    "lodash": "^4.17.15",
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
     "uuid": "^3.3.3",
