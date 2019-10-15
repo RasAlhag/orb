@@ -19,6 +19,7 @@
     v-layout
       v-flex(xs4)
         v-select(
+          dense,
           ref="conditionSelector",
           prepend-inner-icon="mdi-plus"
           label="Новое условие",
@@ -57,7 +58,7 @@
             value: cnd,
             text: cnd.key
           }
-        })
+        }).sort((cndA, cndB) => cndA.text > cndB.text ? 1 : -1)
       }
     },
     methods: {

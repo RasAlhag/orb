@@ -27,7 +27,7 @@
         this.$modal.open({
           options: this.editorOptions,
           props: {
-            rule: new Rule({name: 'Новое Правило', conditions: [], styles: []})
+            rule: new Rule({name: 'Новое Правило', conditions: [],})
           },
           component: RuleEditor,
           on: {

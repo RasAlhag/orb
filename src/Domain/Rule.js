@@ -1,10 +1,19 @@
 import os from 'os'
+import SetBackgroundColor from "./Styles/SetBackgroundColor"
+import SetBorderColor from "./Styles/SetBorderColor"
+import SetTextColor from "./Styles/SetTextColor"
+import SetFontSize from "./Styles/SetFontSize"
 
 export default class Rule {
-  constructor({conditions, styles, name}) {
+  constructor({conditions, name}) {
     this.name = name
     this.conditions = conditions
-    this.styles = styles
+    this.styles = [
+      SetBackgroundColor.create(),
+      SetBorderColor.create(),
+      SetTextColor.create(),
+      SetFontSize.create(),
+    ]
   }
 
   toString() {
