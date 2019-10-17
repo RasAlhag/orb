@@ -5,14 +5,11 @@
         transition-group(name="flip-list")
           v-layout(v-for="condition in rule.conditions", :key="condition.id").px-0.mx-0.py-1
             v-flex
-              v-layout
+              v-layout(align-center)
                 v-flex(xs3)
                   v-layout.my-1
                     v-icon(color="grey ").handle.pointer mdi-drag
-                    v-text-field.pointer(
-                      :value="resolveCnd(condition).key",
-                      readonly, hide-details, solo, disabled
-                    ).mx-2
+                    span.subtitle-1 {{resolveCnd(condition).key}}
                 v-flex(xs9)
                   component(:is="resolveComponent(condition)", :type="resolveModel(condition)", :value="condition", @remove="removeCondition")
     v-divider.my-4

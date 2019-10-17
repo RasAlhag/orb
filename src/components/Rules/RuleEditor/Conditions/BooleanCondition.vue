@@ -1,13 +1,8 @@
 <template lang="pug">
-  v-layout(v-if="value")
+  v-layout(v-if="value", align-center)
     v-flex(xs2).px-5
-      v-switch(v-model="value.value", color="primary")
-    v-flex.px-2
-      v-text-field(
-        solo,
-        readonly,
-        :value="value.value ? 'True' : 'False'"
-      )
+      v-switch(v-model="value.value", color="primary", :label="value.value ? 'True' : 'False'", hide-details)
+    v-spacer
     v-flex(shrink)
       v-btn(large color="error", @click="$emit('remove', value)", icon).fill-height
         v-icon mdi-close

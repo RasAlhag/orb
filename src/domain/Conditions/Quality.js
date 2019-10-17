@@ -1,10 +1,10 @@
 import HasOperator from "./Behaviour/HasOperator"
 
 export default class Quality extends HasOperator {
+  static min = 0
+  static max = 20
   constructor(props) {
     super(props)
     this.typeName = 'Quality'
-    this.min = 0
-    this.max = 20
   }
 }
