@@ -3,12 +3,17 @@ import SetBackgroundColor from "./Styles/SetBackgroundColor"
 import SetBorderColor from "./Styles/SetBorderColor"
 import SetTextColor from "./Styles/SetTextColor"
 import SetFontSize from "./Styles/SetFontSize"
+import {wakeUp as conditionWakeUp} from "./Conditions"
+import {wakeUp as styleWakeUp} from "./Styles"
+import uuid from 'uuid/v4'
 
 export default class Rule {
-  constructor({conditions, name}) {
+  constructor({conditions, styles, effects, name}) {
     this.name = name
+    this.id = uuid()
     this.conditions = conditions
-    this.styles = [
+    this.effects = effects || []
+    this.styles = styles || [
       SetBackgroundColor.create(),
       SetBorderColor.create(),
       SetTextColor.create(),
@@ -25,5 +30,11 @@ export default class Rule {
       result += style.toString() + os.EOL
     })
     return result
+  }
+
+  static wakeUp(data) {
+    data.styles.forEach(style => styleWakeUp(style))
+    data.conditions.forEach(condition => conditionWakeUp(condition))
+    data.__proto__ = this.prototype
   }
 }

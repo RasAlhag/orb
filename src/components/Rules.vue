@@ -15,14 +15,36 @@
   import RuleEditor from "./Rules/RuleEditor"
   import Rule from "../domain/Rule"
   import _ from 'lodash'
+  import {mapGetters, mapMutations} from 'vuex'
 
   export default {
     name: "ORules",
     data: () => ({
-      rules: [],
       editorOptions: {persistent: true, width: 1200}
     }),
+    computed: {
+      ...mapGetters({
+        rules: 'getRules'
+      })
+    },
     methods: {
+      ...mapMutations({
+        storagePush: 'push',
+        storageDelete: 'delete',
+        storageUpdate: 'update',
+      }),
+      addRule(rule) {
+        this.storagePush({
+          item: rule,
+          table: 'rules'
+        })
+      },
+      updateRule(rule) {
+        this.storageUpdate({
+          item: rule,
+          table: 'rules'
+        })
+      },
       newRule() {
         this.$modal.open({
           options: this.editorOptions,
@@ -30,11 +52,7 @@
             rule: new Rule({name: 'Новое Правило', conditions: [],})
           },
           component: RuleEditor,
-          on: {
-            input: (rule) => {
-              this.rules.push(rule)
-            }
-          }
+          on: {input: rule => this.addRule(rule)}
         })
       },
       edit(rule) {
@@ -43,10 +61,7 @@
           props: {rule: _.cloneDeep(rule)},
           component: RuleEditor,
           on: {
-            input: (rule) => {
-              let index = this.rules.findIndex(r => rule.id === r.id)
-              this.$set(this.rules, index, rule)
-            }
+            input: rule => this.updateRule(rule)
           }
         })
       }

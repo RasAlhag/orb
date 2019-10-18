@@ -6,10 +6,6 @@ export default class HasOperator extends AbstractCondition {
   static min = 0
   static max = 0
 
-  constructor({operator, value}) {
-    super({operator, value})
-  }
-
   static create() {
     return new this({value: {from: this.min, to: this.max}})
   }
@@ -35,7 +31,7 @@ export default class HasOperator extends AbstractCondition {
     return this.constructor.min
   }
 
-  max () {
+  max() {
     return this.constructor.max
   }
 }

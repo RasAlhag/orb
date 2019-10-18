@@ -23,7 +23,7 @@ import Prophecy from "./Prophecy"
 import SocketGroup from "./SocketGroup"
 import SocketGroupCondition from "../../components/Rules/RuleEditor/Conditions/SocketGroupCondition"
 
-export default [
+const map = [
   {
     key: 'DropLevel',
     model: DropLevel,
@@ -120,3 +120,10 @@ export default [
     component: SocketGroupCondition,
   },
 ]
+
+
+export default map
+
+export const wakeUp = (data) => {
+  data.__proto__ = map.find(info => info.key === data.typeName).model.prototype
+}
