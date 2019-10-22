@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/Home'
 import Rules from '../components/Rules'
-import store from './store'
-
+import Themes from '../components/Themes'
+import Theme from "../components/Themes/Theme"
 
 Vue.use(Router)
 
@@ -19,12 +19,17 @@ const router = new Router({
       path: '/rules',
       component: Rules
     },
+    {
+      path: '/themes',
+      name: 'themes',
+      component: Themes,
+    },
+    {
+      name: 'theme',
+      path: '/themes/:id',
+      component: Theme
+    }
   ]
-})
-
-router.beforeEach(async (to, from, next) => {
-  await store.restored
-  next()
 })
 
 export default router

@@ -8,7 +8,7 @@
         v-icon mdi-close
 </template>
 <script>
-  import Boolean from "../../../../domain/Conditions/Behaviour/Boolean"
+  import Boolean from "../../../../domain/Rule/Conditions/Behaviour/Boolean"
 
   export default {
     name: 'OPartialMatchCondition',

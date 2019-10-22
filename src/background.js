@@ -1,6 +1,9 @@
 'use strict'
 
 import {app, protocol, BrowserWindow} from 'electron'
+import url from 'url'
+import path from 'path'
+
 import {
   createProtocol,
   // installVueDevtools
@@ -18,7 +21,10 @@ protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: {secure: true,
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800, height: 600,
+    width: 1024,
+    height: 768,
+    minWidth: 1024,
+    minHeight: 768,
     frame: false, webPreferences: {
       nodeIntegration: true
     }
@@ -31,7 +37,13 @@ function createWindow() {
   } else {
     createProtocol('app')
     // Load the index.html when not in development
-    win.loadURL('app://./index.html')
+    win.loadURL(url.format({
+      pathname: path.join(__dirname, 'index.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
+
+    win.webContents.openDevTools()
   }
 
   win.on('closed', () => {

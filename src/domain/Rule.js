@@ -1,40 +1,28 @@
 import os from 'os'
-import SetBackgroundColor from "./Styles/SetBackgroundColor"
-import SetBorderColor from "./Styles/SetBorderColor"
-import SetTextColor from "./Styles/SetTextColor"
-import SetFontSize from "./Styles/SetFontSize"
-import {wakeUp as conditionWakeUp} from "./Conditions"
-import {wakeUp as styleWakeUp} from "./Styles"
+
+import SetFontSize from "./Style/SetFontSize"
+import {wakeUp as conditionWakeUp} from "./Rule/Conditions"
+
 import uuid from 'uuid/v4'
 
 export default class Rule {
-  constructor({conditions, styles, effects, name}) {
+  constructor({conditions, effects, name}) {
     this.name = name
     this.id = uuid()
     this.conditions = conditions
     this.effects = effects || []
-    this.styles = styles || [
-      SetBackgroundColor.create(),
-      SetBorderColor.create(),
-      SetTextColor.create(),
-      SetFontSize.create(),
-    ]
   }
 
-  toString() {
-    let result = `# ${this.name}${os.EOL} Show ${os.EOL}`
-    this.conditions.map(c => c.toString()).filter(c => c).forEach(condition => {
-      result += condition.toString() + os.EOL
-    })
-    this.styles.forEach(style => {
-      result += style.toString() + os.EOL
-    })
-    return result
+  toString(indent = '    ') {
+    return this.conditions.map(c => c.toString(indent)).filter(c => c).join(os.EOL)
   }
 
   static wakeUp(data) {
-    data.styles.forEach(style => styleWakeUp(style))
     data.conditions.forEach(condition => conditionWakeUp(condition))
     data.__proto__ = this.prototype
+  }
+
+  fontSize() {
+    return this.styles.find(style => style instanceof SetFontSize).value
   }
 }

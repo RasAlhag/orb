@@ -1,32 +1,56 @@
 <template lang="pug">
   div
-    v-layout(wrap)
-      v-flex(xs12, sm6, md4, lg3, xl2, v-for="rule in rules", :key="rule.id").px-2.py-2
-        v-card
-          v-toolbar
-            v-toolbar-title {{rule.name}}
-            v-spacer
-            v-toolbar-items
-              v-btn(icon, small, @click="edit(rule)")
-                v-icon(small) mdi-pencil
-    v-btn(@click="newRule") AddRule
+    v-app-bar(color="grey darken-4", flat)
+      v-layout(align-center)
+        v-flex
+          v-text-field(
+            v-model="searchString",
+            solo, flat, hide-details,
+            prepend-inner-icon="mdi-magnify",
+            placeholder="Искать"
+          )
+        v-flex(shrink)
+          v-btn(
+            @click="newRule",
+            large,
+            color="success darken-1"
+          ).ml-2 Добавить правило
+    div.mt-1.px-3
+      orb-rule(
+        v-for="rule in rules",
+        :key="rule.id",
+        v-masonry-tile,
+        @edit="edit(rule)",
+        :rule="rule"
+      ).pointer.mx-1.my-1.elevation-5
 </template>
 <script>
   import RuleEditor from "./Rules/RuleEditor"
   import Rule from "../domain/Rule"
+  import OrbRule from './Rules/Rule'
   import _ from 'lodash'
   import {mapGetters, mapMutations} from 'vuex'
 
   export default {
-    name: "ORules",
+    name: 'OrbRules',
+    components: {OrbRule},
     data: () => ({
+      searchString: null,
       editorOptions: {persistent: true, width: 1200}
     }),
     computed: {
-      ...mapGetters({
-        rules: 'getRules'
-      })
+      ...mapGetters(['getRules']),
+      rules() {
+        if (this.searchString) {
+          return this.getRules.filter(rule => {
+            return rule.name.toLowerCase()
+              .includes(this.searchString.toLowerCase())
+          })
+        }
+        return this.getRules
+      }
     },
+    watch: {},
     methods: {
       ...mapMutations({
         storagePush: 'push',
@@ -66,7 +90,10 @@
         })
       }
     },
-
+    mounted() {
+    },
+    beforeDestroy() {
+    }
   }
 </script>
 

@@ -1,28 +1,27 @@
 <template lang="pug">
-  v-layout(v-if="value")
-    v-flex(xs2)
-      v-select(
-        solo,
-        label="Оператор",
-        :items="operators",
-        v-model="value.operator",
-        hide-details,
-      )
-    v-flex
-      v-select(
-        solo,
-        label="Редкость",
-        :items="rarityVariants",
-        v-model="value.value",
-        hide-details,
-      ).mx-2
-    v-flex(shrink)
-      v-btn(large color="error", @click="$emit('remove', value)", icon).fill-height
-        v-icon mdi-close
-
+  div
+    v-layout(v-if="value", align-center, @mouseover="")
+      v-flex(xs2)
+        v-select(:value="equals", :items="modes", solo, hide-details, append-icon="", @input="updateEquals").text-center
+      v-flex.px-4
+        v-slider(
+          color="default",
+          thumb-color="primary",
+          v-if="equals",
+          :tick-labels="rarityLabels",
+          :value="equalsValue", :min="min", :max="max", @input="updateEqualsValue", hide-details
+        )
+        v-range-slider(
+          v-else,
+          :tick-labels="rarityLabels",
+          :value="rangeValue", :min="min", :max="max", @input="updateRangeValue", hide-details
+        )
+      v-flex(shrink)
+        v-btn(large color="error", @click="$emit('remove', value)", icon).fill-height
+          v-icon mdi-close
 </template>
 <script>
-  import Rarity from "../../../../domain/Conditions/Rarity"
+  import Rarity from "../../../../domain/Rule/Conditions/Rarity"
 
   export default {
     name: 'ORarityCondition',
@@ -32,12 +31,45 @@
         required: true
       }
     },
+    data: () => ({
+      modes: [
+        {text: 'Equals', value: true},
+        {text: 'Between', value: false},
+      ]
+    }),
     computed: {
-      rarityVariants () {
-        return this.value.constructor.getRarityVariants()
+      equals() {
+        return this.value.value.from === this.value.value.to
       },
-      operators() {
-        return this.value.constructor.getOperators()
+      rangeValue() {
+        return [this.value.value.from, this.value.value.to]
+      },
+      min() {
+        return this.value.min()
+      },
+      max() {
+        return this.value.max()
+      },
+      equalsValue() {
+        return this.value.value.from
+      },
+      rarityLabels() {
+        return this.value.constructor.getRarityVariants()
+      }
+    },
+    methods: {
+      updateRangeValue([from, to]) {
+        this.value.value = {from, to}
+      },
+      updateEqualsValue(value) {
+        this.value.value = {from: value, to: value}
+      },
+      updateEquals(value) {
+        if (!value) {
+          this.value.value = {from: this.min, to: this.max}
+        } else {
+          this.value.value = {from: this.min, to: this.min}
+        }
       }
     }
   }

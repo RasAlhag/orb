@@ -8,8 +8,7 @@
           v-flex(shrink)
             v-icon(small @click="exit") mdi-close
         v-content
-          v-container(fluid)
-            router-view
+          router-view
         v-footer(app)
         orb-modal-bus
 </template>

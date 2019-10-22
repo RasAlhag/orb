@@ -14,8 +14,8 @@ export default class MinimapIcon {
     })
   }
 
-  toString() {
-    return `  ${this.typeName} ${this.size} ${this.color} ${this.shape}`
+  toString(indent = '    ') {
+    return `${indent}${this.typeName} ${this.size} ${this.color} ${this.shape}`
   }
 
   static shapeVariants() {

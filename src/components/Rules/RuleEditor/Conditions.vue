@@ -3,15 +3,16 @@
     vue-custom-scrollbar(class="scroll-area")
       draggable(v-model="rule.conditions",  handle=".handle")
         transition-group(name="flip-list")
-          v-layout(v-for="condition in rule.conditions", :key="condition.id").px-0.mx-0.py-1
-            v-flex
-              v-layout(align-center)
-                v-flex(xs3)
-                  v-layout.my-1
-                    v-icon(color="grey ").handle.pointer mdi-drag
-                    span.subtitle-1 {{resolveCnd(condition).key}}
-                v-flex(xs9)
-                  component(:is="resolveComponent(condition)", :type="resolveModel(condition)", :value="condition", @remove="removeCondition")
+          v-layout(
+            v-for="condition in rule.conditions", :key="condition.id",
+            align-center
+          ).px-0.mx-0.py-1
+            v-flex(xs2)
+              v-layout.my-1
+                v-icon(color="grey ").handle.pointer mdi-drag
+                span.subtitle-1 {{resolveCnd(condition).key}}
+            v-flex(xs10)
+              component(:is="resolveComponent(condition)", :type="resolveModel(condition)", :value="condition", @remove="removeCondition")
     v-divider.my-4
     v-layout
       v-flex(xs4)
@@ -30,7 +31,7 @@
 </template>
 <script>
   import Rule from '../../../domain/Rule'
-  import conditions from '../../../domain/Conditions'
+  import conditions from '../../../domain/Rule/Conditions'
   import draggable from 'vuedraggable'
   import VueCustomScrollbar from 'vue-custom-scrollbar'
 

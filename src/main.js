@@ -1,17 +1,32 @@
 import Vue from 'vue'
+import {VueMasonryPlugin} from 'vue-masonry'
+import VueBreadcrumbs from 'vue-breadcrumbs'
+
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import router from './plugins/router'
 import store from './plugins/store'
 import modalBus from './plugins/modalBus'
+
+import Rule from './domain/Rule'
+import Theme from './domain/Theme'
+
 import './styles/main.sass'
 
+
+
 Vue.config.productionTip = false
+Vue.use(VueMasonryPlugin)
+Vue.use(VueBreadcrumbs, {registerComponent: false})
 
 new Vue({
   vuetify,
   router,
   store,
   modalBus,
-  render: h => h(App)
+  render: h => h(App),
+  beforeMount() {
+    this.$store.state.rules.forEach(rule => Rule.wakeUp(rule))
+    this.$store.state.themes.forEach(theme => Theme.wakeUp(theme))
+  }
 }).$mount('#app')

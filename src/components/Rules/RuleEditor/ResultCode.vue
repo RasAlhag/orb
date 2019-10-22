@@ -1,7 +1,6 @@
 <template lang="pug">
-  pre(style="width: 100%")
-    code(style="width: 100%").black.green--text.darken-3
-      | {{rule}}
+  code(style="width: 100%").black.green--text.darken-3
+    pre(style="width: 100%", v-text="rule")
 </template>
 <script>
   import Rule from '../../../domain/Rule'

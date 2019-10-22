@@ -19,7 +19,7 @@
         v-icon mdi-close
 </template>
 <script>
-  import SocketGroup from "../../../../domain/Conditions/SocketGroup"
+  import SocketGroup from "../../../../domain/Rule/Conditions/SocketGroup"
   import OrbSocketGroup from "./SocketGroupCondition/SocketGroup"
 
   export default {

@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import persistance from './persistance'
-import Rule from '../domain/Rule'
+import {createPersistedState} from 'vuex-electron'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+  strict: false,
   state: {
     filters: [],
     rules: [],
@@ -14,7 +14,13 @@ const store = new Vuex.Store({
   getters: {
     getRules: state => {
       return state.rules
-    }
+    },
+    getFilters: state => {
+      return state.filters
+    },
+    getThemes: state => {
+      return state.themes
+    },
   },
   mutations: {
     push(state, {table, item}) {
@@ -32,16 +38,7 @@ const store = new Vuex.Store({
       Object.assign(state[table][index], item)
     }
   },
-  plugins: [persistance.plugin]
-})
-
-store.restored.then(() => {
-  store.state.rules.forEach(rule => {
-    if (rule instanceof Rule) {
-      return
-    }
-    return Rule.wakeUp(rule)
-  })
+  plugins: [createPersistedState()]
 })
 
 export default store

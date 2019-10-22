@@ -28,7 +28,7 @@
         v-icon mdi-close
 </template>
 <script>
-  import PartialMatch from "../../../../domain/Conditions/Behaviour/PartialMatch"
+  import PartialMatch from "../../../../domain/Rule/Conditions/Behaviour/PartialMatch"
 
   export default {
     name: 'OPartialMatchCondition',

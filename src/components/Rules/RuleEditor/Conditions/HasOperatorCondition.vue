@@ -23,7 +23,7 @@
           v-icon mdi-close
 </template>
 <script>
-  import HasOperator from '../../../../domain/Conditions/Behaviour/HasOperator'
+  import HasOperator from '../../../../domain/Rule/Conditions/Behaviour/HasOperator'
 
   export default {
     name: 'OHasOperatorCondition',
