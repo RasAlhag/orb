@@ -30,7 +30,7 @@
   import OrbThemeEditorStyleColorPicker from "./Style/ColorPicker"
 
   export default {
-    name: 'OrbThemeEditorStyle',
+    name: 'OrbThemeStyle',
     components: {OrbThemeEditorStylePreview, OrbThemeEditorStyleColorPicker},
     props: {
       orbStyle: {

@@ -15,8 +15,8 @@
             color="success darken-1",
             @click="createTheme"
           ).ml-2 Добавить тему
-    v-layout(wrap).px-2.pt-1
-      v-flex(v-for="theme in themes", xs6, md6, lg4, xl3).pa-1
+    v-layout(wrap).px-1.py-1
+      v-flex(v-for="theme in themes", xs6, md6, lg4, xl3).px-1.py-1
         orb-theme-preview(
           :theme="theme"
           @delete="deleteTheme(theme)"
@@ -26,7 +26,7 @@
 <script>
   import {mapGetters, mapMutations} from 'vuex'
   import Theme from '../domain/Theme'
-  import OrbThemePreview from './Themes/ThemePreview'
+  import OrbThemePreview from './Themes/Theme/Preview'
 
   export default {
     name: 'orb-themes',
@@ -57,10 +57,10 @@
         storageDelete: 'delete',
         storageUpdate: 'update',
       }),
-      copyTheme (theme) {
+      copyTheme(theme) {
         this.addTheme(theme.copy())
       },
-      createTheme () {
+      createTheme() {
         let theme = new Theme({name: 'Новая тема'})
         this.addTheme(theme)
         this.$router.push({

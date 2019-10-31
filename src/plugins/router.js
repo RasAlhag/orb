@@ -4,6 +4,7 @@ import Home from '../components/Home'
 import Rules from '../components/Rules'
 import Themes from '../components/Themes'
 import Theme from "../components/Themes/Theme"
+import RuleEditor from "../components/Rules/Rule"
 
 Vue.use(Router)
 
@@ -18,6 +19,11 @@ const router = new Router({
       name: 'rules',
       path: '/rules',
       component: Rules
+    },
+    {
+      name: 'rule',
+      path: '/rules/:id',
+      component: RuleEditor
     },
     {
       path: '/themes',

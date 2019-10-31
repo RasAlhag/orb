@@ -1,6 +1,9 @@
 <template lang="pug">
-  code(style="width: 100%").black.green--text.darken-3
-    pre(style="width: 100%", v-text="rule")
+  v-container
+    v-layout(justify-center)
+      v-flex(shrink)
+        code(style="width: 500px").black.green--text.darken-3
+          pre(style="width: 100%", v-text="rule")
 </template>
 <script>
   import Rule from '../../../domain/Rule'

@@ -10,6 +10,6 @@ export default class Boolean extends AbstractCondition {
   }
 
   toString(indent = '    ') {
-    return `${indent}}${this.typeName} ${this.value ? 'True' : 'False'}`
+    return `${indent}${this.typeName} ${this.value ? 'True' : 'False'}`
   }
 }

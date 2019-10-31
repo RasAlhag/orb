@@ -17,7 +17,7 @@
   import _ from 'lodash'
 
   export default {
-    name: 'OrbThemeEditorStyleColorPicker',
+    name: 'OrbThemeStyleColorPicker',
     props: {
       value: {
         type: ColorStyle,

@@ -6,7 +6,7 @@
   import Style from '../../../../domain/Style'
 
   export default {
-    name: 'OrbThemeEditorStylePreview',
+    name: 'OrbThemeStylePreview',
     props: {
       orbStyle: {
         type: Style,

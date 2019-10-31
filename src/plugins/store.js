@@ -10,6 +10,7 @@ const store = new Vuex.Store({
     filters: [],
     rules: [],
     themes: [],
+    styles: [],
   },
   getters: {
     getRules: state => {
@@ -20,6 +21,9 @@ const store = new Vuex.Store({
     },
     getThemes: state => {
       return state.themes
+    },
+    getStyles: state => {
+      return state.styles
     },
   },
   mutations: {

@@ -22,7 +22,7 @@
         )
 </template>
 <script>
-  import OrbThemeEditorStyle from './ThemeEditor/Style'
+  import OrbThemeEditorStyle from './Theme/Style'
   import Style from "../../domain/Style"
   import uuid from 'uuid/v4'
   import _ from 'lodash'

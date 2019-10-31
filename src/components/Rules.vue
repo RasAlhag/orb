@@ -15,25 +15,25 @@
             large,
             color="success darken-1"
           ).ml-2 Добавить правило
+            v-fab-transition
     div.mt-1.px-3
-      orb-rule(
+      orb-rule-preview(
         v-for="rule in rules",
         :key="rule.id",
         v-masonry-tile,
-        @edit="edit(rule)",
-        :rule="rule"
+        :rule="rule",
       ).pointer.mx-1.my-1.elevation-5
 </template>
 <script>
-  import RuleEditor from "./Rules/RuleEditor"
+  import RuleEditor from "./Rules/Rule"
   import Rule from "../domain/Rule"
-  import OrbRule from './Rules/Rule'
+  import OrbRulePreview from './Rules/Rule/Preview'
   import _ from 'lodash'
   import {mapGetters, mapMutations} from 'vuex'
 
   export default {
     name: 'OrbRules',
-    components: {OrbRule},
+    components: {OrbRulePreview},
     data: () => ({
       searchString: null,
       editorOptions: {persistent: true, width: 1200}
