@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-app-bar(color="grey darken-4", flat, extended, style="z-index: 2")
+    v-app-bar(color="grey darken-4", flat, extended)
       v-icon(color="white", @click="$router.push({name: 'rules'})") mdi-arrow-left
       v-text-field.ml-4(
         v-model="rule.name",

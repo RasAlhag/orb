@@ -1,23 +1,24 @@
 <template lang="pug">
   div
-    v-app-bar(color="grey darken-4", flat)
-      v-layout(align-center)
-        v-flex
-          v-text-field(
-            v-model="searchString",
-            solo, flat, hide-details,
-            prepend-inner-icon="mdi-magnify",
-            placeholder="Искать"
-          )
-        v-flex(shrink)
-          v-btn(
-            large,
-            color="success darken-1",
-            @click="createTheme"
-          ).ml-2 Добавить тему
-    v-layout(wrap).px-1.py-1
-      v-flex(v-for="theme in themes", xs6, md6, lg4, xl3).px-1.py-1
-        orb-theme-preview(
+    v-app-bar(color="grey darken-4", flat, extended)
+      v-text-field(
+        v-model="searchString",
+        solo, flat, hide-details,
+        prepend-inner-icon="mdi-magnify",
+        placeholder="Искать"
+      )
+    v-layout(wrap, style="position: relative").pr-1
+      v-btn(
+        small,
+        fab,
+        absolute,
+        top, left
+        color="success",
+        @click="createTheme"
+      )
+        v-icon mdi-plus
+      v-flex(v-for="theme in themes", xs6, md6, lg4, xl3)
+        orb-theme-preview.mt-1.ml-1(
           :theme="theme"
           @delete="deleteTheme(theme)"
           @copy="copyTheme(theme)"

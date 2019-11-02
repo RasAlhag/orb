@@ -13,10 +13,6 @@
     v-flex(shrink).py-2.px-1
       v-btn(icon, @click="value.value.push([])")
         v-icon mdi-plus
-    v-spacer
-    v-flex(shrink)
-      v-btn(large color="error", @click="$emit('remove', value)", icon).fill-height
-        v-icon mdi-close
 </template>
 <script>
   import SocketGroup from "../../../../domain/Rule/Conditions/SocketGroup"

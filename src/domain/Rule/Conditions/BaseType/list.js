@@ -108,5 +108,5 @@ export default [
   "Slaughter Knife", "Infernal Axe", "Golden Plate", "Studded Belt", "Eagle Claw", "Gutting Knife", "Destiny Leather",
   "Engraved Greatsword", "Legion Boots", "Majestic Plate", "Apex Rapier", "Destroyer Regalia", "Eternal Sword",
   "Battle Lamellar", "Gemstone Sword", "Alder Spiked Shield", "Savant's Robe", "Siege Axe", "Ancestral Club",
-  "Crypt Armour", "Void Axe", "Great White Claw", "Dragonbone Rapier", "Necromancer Silks"
+  "Crypt Armour", "Void Axe", "Great White Claw", "Dragonbone Rapier", "Necromancer Silks", "Prophecy",
 ]

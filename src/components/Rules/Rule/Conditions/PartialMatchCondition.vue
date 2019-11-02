@@ -23,9 +23,6 @@
                   div ...
                   div И еще {{matches.length - 5}}
               template(v-else) нет совпадений по этотому фильтру :(
-    v-flex(shrink)
-      v-btn(large color="error", @click="$emit('remove', value)", icon).fill-height
-        v-icon mdi-close
 </template>
 <script>
   import PartialMatch from "../../../../domain/Rule/Conditions/Behaviour/PartialMatch"

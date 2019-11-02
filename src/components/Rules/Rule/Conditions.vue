@@ -28,22 +28,18 @@
           v-card(
             v-for="condition in rule.conditions",
             :key="condition.id"
-          ).my-1.mx-1
+          ).mt-1.mx-1
+            v-toolbar(flat).pointer.handle
+              v-toolbar-title {{resolveCnd(condition).key}}
+              v-spacer
+              v-btn(icon, @click="removeCondition(condition)")
+                v-icon mdi-close
             v-card-text
-              v-layout(
-                align-center
-              ).px-0.mx-0.py-1
-                v-flex(xs2)
-                  v-layout.my-1
-                    v-icon(color="grey ").handle.pointer mdi-drag
-                    span.subtitle-1 {{resolveCnd(condition).key}}
-                v-flex(xs10)
-                  component(
-                    :is="resolveComponent(condition)",
-                    :type="resolveModel(condition)",
-                    :value="condition",
-                    @remove="removeCondition"
-                  )
+              component(
+                :is="resolveComponent(condition)",
+                :type="resolveModel(condition)",
+                :value="condition",
+              )
 </template>
 <script>
   import Rule from '../../../domain/Rule'
@@ -52,7 +48,6 @@
   import VueCustomScrollbar from 'vue-custom-scrollbar'
   import _ from 'lodash'
   import PartialMatch from "../../../domain/Rule/Conditions/Behaviour/PartialMatch"
-  import Boolean from "../../../domain/Rule/Conditions/Behaviour/Boolean"
   import HasOperator from "../../../domain/Rule/Conditions/Behaviour/HasOperator"
 
   export default {

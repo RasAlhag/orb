@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(hover, link, :to="{name: 'theme', params: {id: theme.id}}")
+  v-card(hover, link, :to="{name: 'theme', params: {id: theme.id}}", style="overflow: hidden")
     v-layout(style="min-height: 40px;").canvas-bg
       v-flex(v-for="color in colors")
         v-sheet(:color="color", height="40px")

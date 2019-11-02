@@ -1,6 +1,6 @@
 <template lang="pug">
   v-flex(shrink)
-    v-card.pr-2.pl-3.mr-2
+    v-card(outlined).pr-2.pl-3.mr-2
       v-layout
         v-chip(@click="$emit('drop')", v-if="deletable").my-2.mr-2.px-0
           v-icon(small, right).mx-2 mdi-close

@@ -1,5 +1,10 @@
 <template lang="pug">
-  v-card(@click="$emit('edit')", tile, link, :to="{name: 'rule', params: {id: rule.id}}") {{rule.name}}
+  v-card(@click="$emit('edit')", link, :to="{name: 'rule', params: {id: rule.id}}").mt-1.mx-1
+    v-toolbar
+      v-toolbar-title {{rule.name}}
+      v-spacer
+      v-btn(icon, @click.prevent.stop="$emit('remove')")
+        v-icon mdi-delete
 </template>
 <script>
   import Rule from "../../../domain/Rule"

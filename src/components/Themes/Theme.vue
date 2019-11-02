@@ -1,25 +1,22 @@
 <template lang="pug">
   div
-    v-app-bar(color="grey darken-4", flat)
-      v-layout(align-center)
-        v-flex(shrink)
-          v-btn(link, icon, :to="{name: 'themes'}")
-            v-icon mdi-arrow-left
-        v-flex.px-2
-          v-text-field(
-            v-model="theme.name",
-            solo, flat, hide-details,
+    v-app-bar(color="grey darken-4", flat, extended)
+      v-icon(color="white", @click="$router.push({name: 'themes'})") mdi-arrow-left
+      v-text-field.ml-4(
+        v-model="theme.name",
+        solo, flat, hide-details,
+      )
+    div(style="position: relative")
+      v-btn(fab, small, absolute, top, left, color="success", @click="addStyle")
+        v-icon mdi-plus
+      v-layout(wrap).pr-1
+        v-flex(xs12, sm6, md6, lg4, xl3, v-for="style in theme.styles", :key="style.id")
+          orb-theme-editor-style(
+            :orb-style="style",
+            @remove="removeStyle",
+            @copy="cloneStyle",
+            :swatches="theme.getSwatches()",
           )
-        v-flex(shrink)
-          v-btn(link, large, color="success darken-1", @click="addStyle") Добавить стиль
-    transition-group(name="flip-list", is="v-layout", wrap).px-2
-      v-flex(xs12, sm6, md6, lg4, xl3, v-for="style in theme.styles", :key="style.id").px-2.py-2
-        orb-theme-editor-style(
-          :orb-style="style",
-          @remove="removeStyle",
-          @copy="cloneStyle",
-          :swatches="theme.getSwatches()",
-        )
 </template>
 <script>
   import OrbThemeEditorStyle from './Theme/Style'

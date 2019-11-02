@@ -18,9 +18,6 @@
           thumb-size="0",
           :value="rangeValue", :min="min", :max="max", @input="updateRangeValue", hide-details
         )
-      v-flex(shrink)
-        v-btn(large color="error", @click="$emit('remove', value)", icon).fill-height
-          v-icon mdi-close
 </template>
 <script>
   import HasOperator from '../../../../domain/Rule/Conditions/Behaviour/HasOperator'

@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card
+  v-card.ml-1.mt-1
     orb-theme-editor-style-preview(:orb-style="orbStyle").py-1
       input(v-model="orbStyle.name").headline.full-width.text-center
     v-card-actions

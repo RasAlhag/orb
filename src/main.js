@@ -17,7 +17,6 @@ import './styles/main.sass'
 
 Vue.config.productionTip = false
 Vue.use(VueMasonryPlugin)
-Vue.use(VueBreadcrumbs, {registerComponent: false})
 
 new Vue({
   vuetify,
