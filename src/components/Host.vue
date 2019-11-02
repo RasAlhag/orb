@@ -1,5 +1,6 @@
 <template lang="pug">
-  router-view
+  v-fade-transition(leave-absolute)
+    router-view
 </template>
 <script>
   export default {

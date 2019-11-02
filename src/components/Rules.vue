@@ -21,7 +21,7 @@
         :key="rule.id",
         v-masonry-tile,
         :rule="rule",
-        @remove="removeRule(rule)"
+        @remove="removeRule(rule)",
       )
 </template>
 <script>

@@ -1,9 +1,15 @@
 <template lang="pug">
-  v-app(dark)
+  v-app(dark).fontin
     v-fade-transition
       div(v-if="loaded")
         o-drawer
-        v-app-bar(app, dense, clipped-left, height="28", color="grey darken-4").elevation-1
+        v-app-bar(app,
+          dense, clipped-left,
+          height="28",
+          color="grey darken-4"
+        ).elevation-1
+          v-flex(shrink)
+            orb
           v-flex(shrink)
             v-breadcrumbs(:items="breadcrumbs")
               template(v-slot:divider)
@@ -12,16 +18,18 @@
           v-flex(shrink)
             v-icon(small @click="exit") mdi-close
         v-content
-          router-view
+          v-fade-transition(leave-absolute)
+            router-view
         v-footer(app)
         orb-modal-bus
 </template>
 <script>
   import ODrawer from './components/Drawer/Drawer'
+  import Orb from "./utility/Orb"
 
   export default {
     name: 'App',
-    components: {ODrawer},
+    components: {ODrawer, Orb},
     data: () => ({
       loaded: false,
     }),
