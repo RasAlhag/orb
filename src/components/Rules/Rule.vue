@@ -16,6 +16,7 @@
   import ResultCode from './Rule/ResultCode'
   import Conditions from './Rule/Conditions'
   import {mapGetters, mapMutations} from 'vuex'
+  import _ from 'lodash'
 
   export default {
     name: 'OrbRuleEditor',
