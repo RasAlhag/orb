@@ -1,6 +1,10 @@
 <template lang="pug">
   div
-    v-menu(absolute, transition="slide-x-transition", offset-y)
+    v-menu(
+      absolute,
+      transition="slide-x-transition",
+      offset-y
+    )
       template(v-slot:activator="{on}")
         v-btn(
           v-if="mounted",
@@ -22,8 +26,11 @@
             )
               v-list-item-content
                 | {{condition.key}}
-    vue-custom-scrollbar(class="scroll-area")
-      draggable(v-model="rule.conditions",  handle=".handle")
+    vue-custom-scrollbar.scroll-area
+      draggable(
+        v-model="rule.conditions",
+        handle=".handle"
+      )
         transition-group(name="flip-list")
           v-card(
             v-for="condition in rule.conditions",
@@ -120,8 +127,3 @@
     }
   }
 </script>
-<style scoped>
-  .scroll-area {
-    max-height: calc(100vh - 110px);
-  }
-</style>

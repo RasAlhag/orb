@@ -1,5 +1,8 @@
 <template lang="pug">
-  v-navigation-drawer(app, clipped, permanent)
+  v-navigation-drawer(
+    app, clipped, permanent,
+    width="100"
+  )
     v-list(dense)
       v-list-item(:to="{name: 'rules'}")
         v-list-item-content Rules

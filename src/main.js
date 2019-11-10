@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import {VueMasonryPlugin} from 'vue-masonry'
-import VueBreadcrumbs from 'vue-breadcrumbs'
 
 import App from './App.vue'
 import vuetify from './plugins/vuetify';

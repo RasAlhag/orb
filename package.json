@@ -29,8 +29,7 @@
     "vuedraggable": "^2.23.2",
     "vuetify": "^2.1.5",
     "vuex": "^3.0.1",
-    "vuex-electron": "^1.0.3",
-    "vuex-persist": "^2.1.0"
+    "vuex-electron": "^1.0.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.12.1",

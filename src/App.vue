@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app(dark).fontin
+  v-app(dark)
     v-fade-transition
       div(v-if="loaded")
         o-drawer

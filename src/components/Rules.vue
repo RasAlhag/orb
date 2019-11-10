@@ -14,15 +14,16 @@
         fab, absolute,
         top, left,
         dark, small,
-      ).mt-n1
-        v-icon mdi-plus
-      orb-rule-preview(
-        v-for="rule in rules",
-        :key="rule.id",
-        v-masonry-tile,
-        :rule="rule",
-        @remove="removeRule(rule)",
       )
+        v-icon mdi-plus
+      vue-custom-scrollbar(class="scroll-area")
+        orb-rule-preview(
+          v-for="rule in rules",
+          :key="rule.id",
+          v-masonry-tile,
+          :rule="rule",
+          @remove="removeRule(rule)",
+        )
 </template>
 <script>
   import RuleEditor from "./Rules/Rule"
@@ -30,10 +31,11 @@
   import OrbRulePreview from './Rules/Rule/Preview'
   import _ from 'lodash'
   import {mapGetters, mapMutations} from 'vuex'
+  import VueCustomScrollbar from 'vue-custom-scrollbar'
 
   export default {
     name: 'OrbRules',
-    components: {OrbRulePreview},
+    components: {OrbRulePreview, VueCustomScrollbar},
     data: () => ({
       searchString: null,
       editorOptions: {persistent: true, width: 1200}
