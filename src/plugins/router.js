@@ -5,7 +5,7 @@ import Rules from '../components/Rules'
 import Themes from '../components/Themes'
 import Theme from "../components/Themes/Theme"
 import RuleEditor from "../components/Rules/Rule"
-import Host from "../components/Host"
+import Host from "../utility/Host"
 
 Vue.use(Router)
 

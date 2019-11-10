@@ -11,8 +11,7 @@ import Rule from './domain/Rule'
 import Theme from './domain/Theme'
 
 import './styles/main.sass'
-
-
+import Filter from './domain/Filter'
 
 Vue.config.productionTip = false
 Vue.use(VueMasonryPlugin)
@@ -26,5 +25,6 @@ new Vue({
   beforeMount() {
     this.$store.state.rules.forEach(rule => Rule.wakeUp(rule))
     this.$store.state.themes.forEach(theme => Theme.wakeUp(theme))
+    this.$store.state.filters.forEach(theme => Filter.wakeUp(theme))
   }
 }).$mount('#app')

@@ -1,6 +1,10 @@
 import uuid from 'uuid/v4'
 
 export default class AbstractCondition {
+  id
+  typeName
+  value
+
   constructor({value}) {
     this.id = uuid()
     this.typeName = null
