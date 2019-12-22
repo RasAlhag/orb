@@ -9,7 +9,7 @@
       template(v-slot:extension)
     div(style="position: relative")
       v-btn(
-        @click="newRule"
+        @click="newFilter"
         color="success",
         fab, absolute,
         top, left,
@@ -17,39 +17,36 @@
       )
         v-icon mdi-plus
       vue-custom-scrollbar(class="scroll-area")
-        orb-rule-preview(
-          v-for="rule in rules",
-          :key="rule.id",
+        orb-filter-preview(
+          v-for="filter in filters",
+          :key="filter.id",
           v-masonry-tile,
-          :rule="rule",
-          @remove="removeRule(rule)",
+          :filter="filter",
+          @remove="removeFilter(filter)",
         )
 </template>
 <script>
-  import RuleEditor from "./Rules/Rule"
-  import Rule from "../domain/Rule"
-  import OrbRulePreview from './Rules/Rule/Preview'
-  import _ from 'lodash'
+  import OrbFilterPreview from './Filters/Filter/Preview'
   import {mapGetters, mapMutations} from 'vuex'
   import VueCustomScrollbar from 'vue-custom-scrollbar'
+  import Filter from "../domain/Filter"
 
   export default {
     name: 'OrbFilters',
-    components: {OrbRulePreview, VueCustomScrollbar},
+    components: {OrbFilterPreview, VueCustomScrollbar},
     data: () => ({
       searchString: null,
-      editorOptions: {persistent: true, width: 1200}
     }),
     computed: {
-      ...mapGetters(['getRules']),
-      rules() {
+      ...mapGetters(['getFilters']),
+      filters() {
         if (this.searchString) {
-          return this.getRules.filter(rule => {
-            return rule.name.toLowerCase()
+          return this.getFilters.filter(filter => {
+            return filter.name.toLowerCase()
               .includes(this.searchString.toLowerCase())
           })
         }
-        return this.getRules
+        return this.getFilters
       }
     },
     methods: {
@@ -58,42 +55,32 @@
         storageDelete: 'delete',
         storageUpdate: 'update',
       }),
-      removeRule(rule) {
+      removeFilter(filter) {
         this.storageDelete({
-          item: rule,
-          table: 'rules'
+          item: filter,
+          table: 'filters'
         })
       },
-      addRule(rule) {
+      addFilter(filter) {
         this.storagePush({
-          item: rule,
-          table: 'rules'
+          item: filter,
+          table: 'filters'
         })
       },
-      updateRule(rule) {
+      updateFilter(filter) {
         this.storageUpdate({
-          item: rule,
-          table: 'rules'
+          item: filter,
+          table: 'filters'
         })
       },
-      newRule() {
-        let rule = new Rule({name: 'Новое Правило', conditions: []})
-        this.addRule(rule)
+      newFilter() {
+        let filter = new Filter({name: 'Новый фильтр', conditions: []})
+        this.addFilter(filter)
         this.$router.push({
-          name: 'rule',
-          params: {id: rule.id}
+          name: 'filter',
+          params: {id: filter.id}
         })
       },
-      edit(rule) {
-        this.$modal.open({
-          options: this.editorOptions,
-          props: {rule: _.cloneDeep(rule)},
-          component: RuleEditor,
-          on: {
-            input: rule => this.updateRule(rule)
-          }
-        })
-      }
     },
   }
 </script>

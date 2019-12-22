@@ -1,11 +1,7 @@
 <template lang="pug">
   div
-    v-menu(
-      absolute,
-      transition="slide-x-transition",
-      offset-y
-    )
-      template(v-slot:activator="{on}")
+    o-condition-picker(@select="createCondition($event)")
+      template(v-slot="{on}")
         v-btn(
           v-if="mounted",
           v-on="on",
@@ -15,17 +11,6 @@
           dark, small,
         )
           v-icon mdi-plus
-      v-layout(wrap).grey.darken-3
-        v-flex(v-for="(conditions, group) in conditionsGrouped")
-          v-list(dense)
-            v-subheader {{group}}
-            v-list-item(
-              v-for="(condition, index) in conditions",
-              :key="condition.key",
-              @click="createCondition(condition)"
-            )
-              v-list-item-content
-                | {{condition.key}}
     vue-custom-scrollbar.scroll-area
       draggable(
         v-model="rule.conditions",
@@ -33,7 +18,7 @@
       )
         transition-group(name="flip-list")
           v-card(
-            v-for="condition in rule.conditions",
+            v-for="(condition, index) in rule.conditions",
             :key="condition.id"
           ).mt-1.mx-1
             v-toolbar(flat).pointer.handle
@@ -46,20 +31,20 @@
                 :is="resolveComponent(condition)",
                 :type="resolveModel(condition)",
                 :value="condition",
+                @input="updateCondition(index, $event)"
               )
 </template>
 <script>
   import Rule from '../../../domain/Rule'
-  import conditions from '../../../domain/Rule/Conditions'
+  import {resolveComponent, resolveModel, resolveCnd, conditionsGrouped} from '../../../domain/Rule/Conditions'
   import draggable from 'vuedraggable'
   import VueCustomScrollbar from 'vue-custom-scrollbar'
-  import _ from 'lodash'
-  import PartialMatch from "../../../domain/Rule/Conditions/Behaviour/PartialMatch"
-  import HasOperator from "../../../domain/Rule/Conditions/Behaviour/HasOperator"
+  import {mapMutations} from 'vuex'
+  import OConditionPicker from "./ConditionPicker"
 
   export default {
     name: 'OConditions',
-    components: {draggable, VueCustomScrollbar},
+    components: {OConditionPicker, draggable, VueCustomScrollbar},
     props: {
       rule: {
         type: Rule,
@@ -67,60 +52,37 @@
       },
     },
     data: () => ({
-      cnd: null,
       mounted: false,
       selectedCnd: null,
-      conditions
+      conditionsGrouped,
     }),
-    computed: {
-      conditionsToSelect() {
-        return this.conditions.slice().sort((cndA, cndB) => cndA.key > cndB.key ? 1 : -1)
-      },
-      conditionsGrouped() {
-        let groups = _.groupBy(this.conditionsToSelect, condition => {
-          switch (true) {
-            case condition.model.prototype instanceof HasOperator:
-              return 'Range'
-            case condition.model.prototype instanceof PartialMatch:
-              return 'Name'
-            default:
-              return 'Other'
-          }
-        })
-
-        return {
-          Range: groups.Range,
-          Name: groups.Name,
-          Other: groups.Other
-        }
-      }
-    },
+    computed: {},
     methods: {
+      ...mapMutations({
+        storageUpdate: 'update'
+      }),
+      updateRule(rule) {
+        this.storageUpdate({
+          item: rule,
+          table: 'rules',
+        })
+      },
+      updateCondition(index, value) {
+        this.rule.conditions[index] = value
+        this.updateRule(this.rule)
+      },
       createCondition(e) {
         this.addCondition(e.model.create())
       },
       addCondition(condition) {
         this.rule.conditions.push(condition)
-        this.$nextTick(() => {
-          this.cnd = null
-        })
-      },
-      resolveComponent(condition) {
-        return this.conditions.reduce((carry, current) => {
-          return carry || (condition instanceof current.model ? current.component : null)
-        }, null)
-      },
-      resolveModel(condition) {
-        return this.conditions.reduce((carry, current) => {
-          return carry || condition instanceof current.model ? current.model : null
-        }, null)
-      },
-      resolveCnd(condition) {
-        return this.conditions.find(cnd => condition instanceof cnd.model)
       },
       removeCondition(condition) {
         this.$delete(this.rule.conditions, this.rule.conditions.indexOf(condition))
       },
+      resolveComponent,
+      resolveModel,
+      resolveCnd,
     },
     mounted() {
       this.mounted = true

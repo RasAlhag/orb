@@ -4,6 +4,8 @@
     width="100"
   )
     v-list(dense)
+      v-list-item(:to="{name: 'filters'}")
+        v-list-item-content Filters
       v-list-item(:to="{name: 'rules'}")
         v-list-item-content Rules
       v-list-item(:to="{name: 'themes'}")

@@ -11,9 +11,7 @@
           v-flex(shrink)
             orb
           v-flex(shrink)
-            v-breadcrumbs(:items="breadcrumbs")
-              template(v-slot:divider)
-                v-icon mdi-chevron-right
+            o-breadcrumbs(:path="$route.matched")
           v-flex(style="-webkit-app-region: drag").fill-height
           v-flex(shrink)
             v-icon(small @click="exit") mdi-close
@@ -26,34 +24,15 @@
 <script>
   import ODrawer from './components/Drawer/Drawer'
   import Orb from "./utility/Orb"
+  import OBreadcrumbs from "./utility/Breadcrumbs"
 
   export default {
     name: 'App',
-    components: {ODrawer, Orb},
+    components: {OBreadcrumbs, ODrawer, Orb},
     data: () => ({
       loaded: false,
     }),
     computed: {
-      breadcrumbs() {
-        return this.$route.matched.map((route, index) => {
-          return {
-            text: typeof route.meta.breadcrumb === 'function'
-              ? route.meta.breadcrumb(this.$store, this.$route)
-              : route.meta.breadcrumb,
-            link: true,
-            exact: true,
-            disabled: (index + 1) === this.$route.matched.length,
-            to: route.meta.to,
-          }
-        })
-        // return this.$breadcrumbs.map((route, index) => ({
-        //   text: route.meta.breadcrumb,
-        //   link: true,
-        //   exact: true,
-        //   disabled: (index + 1) === this.$breadcrumbs.length,
-        //   to: route.meta.to,
-        // }))
-      },
     },
     methods: {
       exit() {

@@ -22,6 +22,9 @@ import HasEnchantment from "./HasEnchantment"
 import Prophecy from "./Prophecy"
 import SocketGroup from "./SocketGroup"
 import SocketGroupCondition from "../../../components/Rules/Rule/Conditions/SocketGroupCondition"
+import HasOperator from "./Behaviour/HasOperator"
+import PartialMatch from "./Behaviour/PartialMatch"
+import _ from 'lodash'
 
 const map = [
   {
@@ -123,6 +126,37 @@ const map = [
 
 
 export default map
+
+export const resolveComponent = (condition) => {
+  return map.reduce((carry, current) => {
+    return carry || (condition instanceof current.model ? current.component : null)
+  }, null)
+}
+
+export const resolveModel = (condition) => {
+  return map.reduce((carry, current) => {
+    return carry || condition instanceof current.model ? current.model : null
+  }, null)
+}
+
+export const resolveCnd = (condition) => {
+  return map.find(cnd => condition instanceof cnd.model)
+}
+
+export const conditionsToSelect = map.slice().sort((cndA, cndB) => cndA.key > cndB.key ? 1 : -1)
+
+export const conditionsGrouped = (({Range, Name, Other}) => ({Range, Name, Other}))(_.groupBy(conditionsToSelect, condition => {
+    switch (true) {
+      case condition.model.prototype instanceof HasOperator:
+        return 'Range'
+      case condition.model.prototype instanceof PartialMatch:
+        return 'Name'
+      default:
+        return 'Other'
+    }
+  }
+))
+
 
 export const wakeUp = (data) => {
   data.__proto__ = map.find(info => info.key === data.typeName).model.prototype

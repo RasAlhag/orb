@@ -5,10 +5,11 @@
         orb-socket-group.my-1(
           v-for="(group, index) in value.value",
           :key="index",
-          v-model="value.value[index]",
+          :value="value.value[index]",
           :variants="variants",
-          @drop="$delete(value.value, index)",
           :deletable="value.value.length > 1"
+          @drop="$delete(value.value, index)",
+          @input="updateGroup(index, $event)"
         )
     v-flex(shrink).py-2.px-1
       v-btn(icon, @click="value.value.push([])")
@@ -33,6 +34,9 @@
       }
     },
     methods: {
+      updateGroup(index, group) {
+        this.value.value[index] = group
+      }
     }
   }
 </script>

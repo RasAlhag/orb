@@ -18,7 +18,7 @@
         v-icon mdi-plus
       vue-custom-scrollbar(class="scroll-area")
         orb-rule-preview(
-          v-for="rule in rules",
+          v-for="rule in filteredRules",
           :key="rule.id",
           v-masonry-tile,
           :rule="rule",
@@ -26,30 +26,29 @@
         )
 </template>
 <script>
-  import RuleEditor from "./Rules/Rule"
   import Rule from "../domain/Rule"
   import OrbRulePreview from './Rules/Rule/Preview'
-  import _ from 'lodash'
-  import {mapGetters, mapMutations} from 'vuex'
+  import {mapMutations} from 'vuex'
   import VueCustomScrollbar from 'vue-custom-scrollbar'
 
   export default {
     name: 'OrbRules',
     components: {OrbRulePreview, VueCustomScrollbar},
+    props: {
+      rules: Array,
+    },
     data: () => ({
       searchString: null,
-      editorOptions: {persistent: true, width: 1200}
     }),
     computed: {
-      ...mapGetters(['getRules']),
-      rules() {
+      filteredRules() {
         if (this.searchString) {
-          return this.getRules.filter(rule => {
+          return this.rules.filter(rule => {
             return rule.name.toLowerCase()
               .includes(this.searchString.toLowerCase())
           })
         }
-        return this.getRules
+        return this.rules
       }
     },
     methods: {
@@ -84,16 +83,6 @@
           params: {id: rule.id}
         })
       },
-      edit(rule) {
-        this.$modal.open({
-          options: this.editorOptions,
-          props: {rule: _.cloneDeep(rule)},
-          component: RuleEditor,
-          on: {
-            input: rule => this.updateRule(rule)
-          }
-        })
-      }
     },
   }
 </script>

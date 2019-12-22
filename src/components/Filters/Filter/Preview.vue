@@ -1,21 +1,21 @@
 <template lang="pug">
-  v-card(@click="$emit('edit')", link, :to="{name: 'rule', params: {id: rule.id}}").mt-1.mx-1
+  v-card(@click="$emit('edit')", link, :to="{name: 'filter', params: {id: filter.id}}").mt-1.mx-1
     v-toolbar
-      v-toolbar-title {{rule.name}}
+      v-toolbar-title.fontin {{filter.name}}
       v-spacer
       v-btn(icon, @click.prevent.stop="$emit('remove')")
         v-icon mdi-delete
 </template>
 <script>
-  import Rule from "../../../domain/Rule"
+  import Filter from "../../../domain/Filter"
   import OrbRuleStylePreview from '../../Themes/Theme/Style/StylePreview'
 
   export default {
-    name: 'OrbRulePreview',
+    name: 'OrbFilterPreview',
     components: {OrbRuleStylePreview},
     props: {
-      rule: {
-        type: Rule,
+      filter: {
+        type: Filter,
         required: true,
       }
     }

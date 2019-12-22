@@ -2,8 +2,8 @@
   v-container
     v-layout(justify-center)
       v-flex(shrink)
-        code(style="width: 500px").black.green--text.darken-3
-          pre(style="width: 100%", v-text="rule")
+        code(style="width: auto").px-0.black.green--text.darken-3
+          pre(style="width: auto", v-text="rule").px-10
 </template>
 <script>
   import Rule from '../../../domain/Rule'

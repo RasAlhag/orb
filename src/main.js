@@ -22,7 +22,7 @@ new Vue({
   store,
   modalBus,
   render: h => h(App),
-  beforeMount() {
+  created() {
     this.$store.state.rules.forEach(rule => Rule.wakeUp(rule))
     this.$store.state.themes.forEach(theme => Theme.wakeUp(theme))
     this.$store.state.filters.forEach(theme => Filter.wakeUp(theme))

@@ -1,6 +1,6 @@
 <template lang="pug">
   v-flex(shrink)
-    v-card(outlined).pr-2.pl-3.mr-2
+    v-card(outlined).pr-2.pl-3.mr-2.rounded
       v-layout
         v-chip(@click="$emit('drop')", v-if="deletable").my-2.mr-2.px-0
           v-icon(small, right).mx-2 mdi-close
@@ -82,7 +82,8 @@
     }
   }
 </script>
-
 <style scoped>
-
+  .rounded {
+    border-radius: 25px !important;
+  }
 </style>
