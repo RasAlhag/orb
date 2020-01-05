@@ -1,9 +1,12 @@
 <template lang="pug">
-  v-layout(v-if="value", align-center)
-    v-switch(
-      v-model="value.value", color="primary",
-      :label="value.value ? 'True' : 'False'", hide-details
-    )
+  v-card
+    v-card-title {{type.key}}
+    v-card-text
+      v-layout(v-if="value", align-center)
+        v-switch(
+          v-model="value.value", color="primary",
+          :label="value.value ? 'True' : 'False'", hide-details
+        )
 </template>
 <script>
   import Boolean from "../../../../domain/Rule/Conditions/Behaviour/Boolean"
@@ -14,6 +17,9 @@
       value: {
         type: Boolean,
         required: true
+      },
+      type: {
+        type: Object,
       }
     },
     computed: {

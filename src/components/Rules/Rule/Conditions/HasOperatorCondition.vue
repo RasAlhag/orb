@@ -1,23 +1,25 @@
 <template lang="pug">
-  div
-    v-layout(v-if="value", align-center, @mouseover="")
-      v-flex(xs2)
-        v-select(:value="equals", :items="modes", solo, hide-details, append-icon="", @input="updateEquals").text-center
-      v-flex.px-4
-        v-slider(
-          color="default",
-          thumb-color="primary",
-          v-if="equals",
-          thumb-label="always"
-          thumb-size="0"
-          :value="equalsValue", :min="min", :max="max", @input="updateEqualsValue", hide-details
-        )
-        v-range-slider(
-          v-else,
-          thumb-label="always",
-          thumb-size="0",
-          :value="rangeValue", :min="min", :max="max", @input="updateRangeValue", hide-details
-        )
+  v-card
+    v-card-title {{type.key}}
+    v-card-text
+      v-layout(v-if="value", align-center, @mouseover="")
+        v-flex(xs2)
+          v-select(:value="equals", :items="modes", solo, hide-details, append-icon="", @input="updateEquals").text-center
+        v-flex.px-4
+          v-slider(
+            color="default",
+            thumb-color="primary",
+            v-if="equals",
+            thumb-label="always"
+            thumb-size="0"
+            :value="equalsValue", :min="min", :max="max", @input="updateEqualsValue", hide-details
+          )
+          v-range-slider(
+            v-else,
+            thumb-label="always",
+            thumb-size="0",
+            :value="rangeValue", :min="min", :max="max", @input="updateRangeValue", hide-details
+          )
 </template>
 <script>
   import HasOperator from '../../../../domain/Rule/Conditions/Behaviour/HasOperator'
@@ -28,6 +30,9 @@
       value: {
         type: HasOperator,
         default: null
+      },
+      type: {
+        type: Object,
       }
     },
     data: () => ({
@@ -67,7 +72,7 @@
           this.value.value = {from: this.min, to:  this.min}
         }
       }
-    }
+    },
   }
 </script>
 

@@ -22,7 +22,7 @@ export default class PartialMatch extends AbstractCondition {
 
   toString(indent = '    ') {
     if (!this.value.length) {
-      return null
+      return indent
     }
     let preparedValue = this.value.map(res => `"${res}"`).join(' ')
     return `${indent}${this.typeName} ${preparedValue}`

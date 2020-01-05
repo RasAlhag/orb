@@ -1,21 +1,23 @@
 <template lang="pug">
-  div
-    v-layout(v-if="value", align-center, @mouseover="")
-      v-flex(xs2)
-        v-select(:value="equals", :items="modes", solo, hide-details, append-icon="", @input="updateEquals").text-center
-      v-flex.px-4
-        v-slider(
-          color="default",
-          thumb-color="primary",
-          v-if="equals",
-          :tick-labels="rarityLabels",
-          :value="equalsValue", :min="min", :max="max", @input="updateEqualsValue", hide-details
-        )
-        v-range-slider(
-          v-else,
-          :tick-labels="rarityLabels",
-          :value="rangeValue", :min="min", :max="max", @input="updateRangeValue", hide-details
-        )
+  v-card
+    v-card-title {{type.key}}
+    v-card-text
+      v-layout(v-if="value", align-center, @mouseover="")
+        v-flex(xs2)
+          v-select(:value="equals", :items="modes", solo, hide-details, append-icon="", @input="updateEquals").text-center
+        v-flex.px-4
+          v-slider(
+            color="default",
+            thumb-color="primary",
+            v-if="equals",
+            :tick-labels="rarityLabels",
+            :value="equalsValue", :min="min", :max="max", @input="updateEqualsValue", hide-details
+          )
+          v-range-slider(
+            v-else,
+            :tick-labels="rarityLabels",
+            :value="rangeValue", :min="min", :max="max", @input="updateRangeValue", hide-details
+          )
 </template>
 <script>
   import Rarity from "../../../../domain/Rule/Conditions/Rarity"
@@ -26,6 +28,9 @@
       value: {
         type: Rarity,
         required: true
+      },
+      type: {
+        type: Object,
       }
     },
     data: () => ({
